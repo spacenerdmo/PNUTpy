@@ -292,7 +292,8 @@ class Channel(APIModel):
     @classmethod
     def from_response_data(cls, data, api=None):
         channel = super(Channel, cls).from_response_data(data, api)
-        channel.owner = User.from_response_data(channel.owner, api)
+        if channel.get('owner'):
+            channel.owner = User.from_response_data(channel.owner, api)
         return channel
 
 class File(APIModel):
