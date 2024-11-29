@@ -25,11 +25,11 @@ class PnutpyAPITests(PnutpyTestCase):
 
         post, meta = self.api.delete_post(post)
 
-        post, meta = self.api.repost_post(257434)
-        post, meta = self.api.unrepost_post(257434)
+        post, meta = self.api.repost_post(1309208)
+        post, meta = self.api.unrepost_post(1309208)
 
-        post, meta = self.api.bookmark_post(257434)
-        post, meta = self.api.unbookmark_post(257434)
+        post, meta = self.api.bookmark_post(1309208)
+        post, meta = self.api.unbookmark_post(1309208)
 
         posts, meta = self.api.get_posts(ids='1,2,3')
         self.assertEqual(len(posts), 3)
@@ -49,7 +49,10 @@ class PnutpyAPITests(PnutpyTestCase):
 
     def test_user(self):
         display_name = u'tester %s' % (time.time())
+        print(display_name)
         user, meta = self.api.get_user('me')
+        print(self.username)
+        print(user.username)
         self.assertEqual(self.username, user.username)
         old_name = user.name
         user.name = display_name

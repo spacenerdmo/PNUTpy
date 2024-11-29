@@ -15,7 +15,7 @@ class PnutpyModelTests(PnutpyTestCase):
         post.bookmark()
         post.unbookmark()
         post.delete()
-        post, meta = self.api.get_post(257434)
+        post, meta = self.api.get_post(1309208)
         post.repost()
         post.unrepost()
 
@@ -25,7 +25,7 @@ class PnutpyModelTests(PnutpyTestCase):
 
         user.name = new_display_name
         user.update_user()
-        self.assertEquals(user.name, new_display_name)
+        self.assertEqual(user.name, new_display_name)
 
         user, meta = self.api.get_user(9)
         user.follow_user()
