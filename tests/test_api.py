@@ -49,10 +49,7 @@ class PnutpyAPITests(PnutpyTestCase):
 
     def test_user(self):
         display_name = u'tester %s' % (time.time())
-        print(display_name)
         user, meta = self.api.get_user('me')
-        print(self.username)
-        print(user.username)
         self.assertEqual(self.username, user.username)
         old_name = user.name
         user.name = display_name
