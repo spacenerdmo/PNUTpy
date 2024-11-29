@@ -37,6 +37,15 @@ class PnutpyModelTests(PnutpyTestCase):
         user.block_user()
         user.unblock_user()
 
+    def test_channel(self):
+        # normal public channel
+        user_id = 9
+        channel, meta = self.api.get_channel(85)
+        self.assertEqual(user_id, channel.user.id)
+        # channel where the owner user account has been deleted
+        user_id = 213
+        channel, meta = self.api.get_channel(955)
+        self.assertEqual(user_id, channel.user_id)
 
 if __name__ == '__main__':
     unittest.main()
