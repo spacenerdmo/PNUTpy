@@ -29,7 +29,7 @@ class API(requests.Session):
 
     """
     @classmethod
-    def build_api(cls, api_root='https://api.pnut.io/v0', access_token=None, verify_ssl=True, extra_headers=None):
+    def build_api(cls, api_root='https://api.pnut.io/v1', access_token=None, verify_ssl=True, extra_headers=None):
         api = cls()
         api.api_root = api_root
         if access_token:
@@ -98,7 +98,7 @@ class API(requests.Session):
         return self.request(method, *args, **kwargs)
 
 
-re_path_template = re.compile('{\w+}')
+re_path_template = re.compile(r'{\w+}')
 
 
 def bind_api_method(func_name, path, payload_type=None, payload_list=False, allowed_params=None,
@@ -360,8 +360,8 @@ bind_api_method('users_channels', '/users/me/channels', payload_type=Channel, pa
                 allowed_params=PAGINATION_PARAMS + CHANNEL_PARAMS, require_auth=True)
 
 
-bind_api_method('num_unread_pm_channels', '/users/me/channels/num_unread/pm', payload_type=SimpleValueModel,
-                allowed_params=CHANNEL_PARAMS, require_auth=True)
+bind_api_method('num_unread_pm_channels', '/users/me/channels/num_unread?channel_types=io.pnut.core.pm',
+                payload_type=SimpleValueModel, allowed_params=CHANNEL_PARAMS, require_auth=True)
 
 
 bind_api_method('update_channel', '/channels/{channel_id}', payload_type=Channel, method='PUT',

@@ -15,7 +15,7 @@ class PnutpyModelTests(PnutpyTestCase):
         post.bookmark()
         post.unbookmark()
         post.delete()
-        post, meta = self.api.get_post(257434)
+        post, meta = self.api.get_post(1309208)
         post.repost()
         post.unrepost()
 
@@ -25,7 +25,7 @@ class PnutpyModelTests(PnutpyTestCase):
 
         user.name = new_display_name
         user.update_user()
-        self.assertEquals(user.name, new_display_name)
+        self.assertEqual(user.name, new_display_name)
 
         user, meta = self.api.get_user(9)
         user.follow_user()
@@ -37,6 +37,15 @@ class PnutpyModelTests(PnutpyTestCase):
         user.block_user()
         user.unblock_user()
 
+    def test_channel(self):
+        # normal public channel
+        user_id = 9
+        channel, meta = self.api.get_channel(85)
+        self.assertEqual(user_id, channel.user.id)
+        # channel where the owner user account has been deleted
+        user_id = 213
+        channel, meta = self.api.get_channel(955)
+        self.assertEqual(user_id, channel.user_id)
 
 if __name__ == '__main__':
     unittest.main()
