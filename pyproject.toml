@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pnutpy"
-version = "0.5.3"
+version = "0.5.4"
 authors = [
     {name = "33MHz, pnut.io", email = "support@pnut.io"},
     {name = "Morgan McMillian", email = "morgan@mcmillian.dev"},
@@ -16,7 +16,6 @@ readme = "README.rst"
 urls = {Homepage = "https://github.com/pnut-api/PNUTpy"}
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
